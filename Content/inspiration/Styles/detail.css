@@ -1,0 +1,433 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,500,600,700,800);
+
+html,
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td,
+a {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var,
+optgroup {
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+del,
+ins {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+caption,
+th {
+    text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before,
+q:after {
+    content: '';
+}
+
+abbr,
+acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+sup {
+    vertical-align: baseline;
+}
+
+sub {
+    vertical-align: baseline;
+}
+
+legend {
+    color: #000;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+input,
+button,
+textarea,
+select {
+    *font-size: 100%;
+}
+/*clearfix*/
+.clearfix {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+/* Tell the browser to render HTML 5 elements as block */
+header,
+footer,
+aside,
+nav,
+article,
+section,
+figure,
+img,
+time {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@-webkit-viewport {
+    width: device-width;
+}
+
+@-moz-viewport {
+    width: device-width;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@-o-viewport {
+    width: device-width;
+}
+
+@viewport {
+    width: device-width;
+}
+/*#endregion */
+/*#region Variabelen */
+/*#endregion */
+/*#region Elements */
+html {
+    min-height: 100%;
+    min-width: 100%;
+    font-size: 1em !important;
+}
+
+body {
+    min-height: 100%;
+    min-width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    color: #434343;
+    font-size: 1em !important;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+
+h1 {
+    font-weight: normal;
+    color: #636363;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.8em;
+    line-height: 1.8em;
+}
+
+h2 {
+    font-weight: normal;
+    color: #636363;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+h3 {
+    font-weight: normal;
+    color: #636363;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.1em;
+}
+
+h4 {
+    font-weight: normal;
+    color: #636363;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    line-height: 1em;
+}
+
+h5 {
+    font-weight: normal;
+    color: #636363;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    line-height: 1em;
+}
+
+h6 {
+    font-weight: normal;
+    color: #636363;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    line-height: 1em;
+}
+
+    h1 strong,
+    h2 strong,
+    h3 strong,
+    h4 strong,
+    h5 strong,
+    h6 strong {
+        font-weight: 700;
+    }
+
+p {
+    text-align: left;
+    color: #434343;
+    font-family: 'Open Sans', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+ol {
+    list-style: none;
+}
+
+li {
+    color: #434343;
+}
+
+.wrap{
+    width:90%;
+    height:90%;
+    margin-left:5%;
+    margin-right:5%;
+}
+
+    .wrap .header{
+        margin-left:15%;
+        margin-right:15%;
+        margin-top:2%;
+        text-align:center;
+    }
+        .wrap .header .quote{
+            font-weight: 300;
+            font-style:italic;
+            margin: 2% 15%;
+            margin-bottom:0;
+        }
+    .wrap .content{
+        margin-top:5%;
+        padding-left:3%;
+    }
+        .wrap .content .projectinfowrap{
+            display:block;
+            float:left;
+            width:23%;
+        }
+            .wrap .content .projectinfowrap .projectinfo{
+                margin:2%;
+            }
+                .wrap .content .projectinfowrap .projectinfo .projectinfoitem{
+                    overflow:hidden;
+                    margin-bottom:15px;
+                }
+                    .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon{
+                        float:left;
+                        height:2.4em;
+                        width:35px;
+                        text-align:right;
+                        background-size:100%;
+                        background-repeat:no-repeat;
+                    }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon i{
+                            font-size:2.4em;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon.windowsicon {
+                            background-image: url(/Content/inspiration/Images/Icons/windowicon_windowsdoors.png)
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.windowsdoors .projectinfoitemicon i{
+                            color:#008ec2;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon.rooficon {
+                            background-image: url(/Content/inspiration/Images/Icons/rooficon_rooflinecladding.png)
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.rooflinecladding .projectinfoitemicon i{
+                            color: #a48e61;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon.claddingicon {
+                            background-image: url(/Content/inspiration/Images/Icons/claddingicon_rooflinecladding.png)
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.outdoorliving .projectinfoitemicon i{
+                            color: #8ba446;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon.interioricon {
+                            background-image: url(/Content/inspiration/Images/Icons/wallicon_interior.png)
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.interior .projectinfoitemicon i{
+                            color: #ef9b3a;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon.fenceicon {
+                            background-image: url(/Content/inspiration/Images/Icons/fenceicon_outdoorliving.png)
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemicon.terraceicon{
+                            background-image: url(/Content/inspiration/Images/Icons/terraceicon_outdoorliving.png)
+                        }
+
+
+
+                    .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemcontent{
+                        float:left;
+                        margin-left:15px;
+                    }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemcontent h4{
+                            font-size:1.2em;
+                            text-transform:uppercase;
+                            font-weight:500;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.windowsdoors .projectinfoitemcontent h4{
+                            color: #008ec2;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.rooflinecladding .projectinfoitemcontent h4{
+                            color: #a48e61;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.outdoorliving .projectinfoitemcontent h4{
+                            color: #8ba446;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem.interior .projectinfoitemcontent h4{
+                            color: #ef9b3a;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemcontent p{
+                            font-size:0.9em;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemcontent img{
+                            border-radius:15px;
+                            width:100px;
+                            height:auto;
+                            margin-top:15px;
+                        }
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemcontent img.decoramic{
+                            width:75px;
+                            margin-top:10px;
+                        }
+
+                        .wrap .content .projectinfowrap .projectinfo .projectinfoitem .projectinfoitemcontent img.border{
+                            border:1px solid #636363;
+                        }
+                        
+        .wrap .content .socialwrap{
+            margin:2%;
+            padding-top:2%;
+            padding-bottom:2%;
+        }
+            .wrap .content .socialwrap .socialicons{
+                overflow:hidden;
+            }
+            .wrap .content .socialwrap .socialicons .icon{
+                display:block;
+                float:left;
+                width:18%;
+                margin-right:2.5%;
+            }
+            .wrap .content .socialwrap .socialicons .icon:last-of-type{
+                margin-right:0;
+            }
+                .wrap .content .socialwrap .socialicons .icon i{
+                    font-size:2em;
+                }
+                    .wrap .content .socialwrap .socialicons.windowsdoors .icon i{
+                        color:#008ec2;
+                    }
+                    .wrap .content .socialwrap .socialicons.rooflinecladding .icon i{
+                        color: #a48e61;
+                    }
+                    .wrap .content .socialwrap .socialicons.outdoorliving .icon i{
+                        color: #8ba446;
+                    }
+                    .wrap .content .socialwrap .socialicons.interior .icon i{
+                        color: #ef9b3a;
+                    }
+        .wrap .content .slideshowwrap{
+            display:block;
+            float:left;
+            width:70%;
+            height:auto;
+            margin-left:5%;
+        }
+            
