@@ -39,35 +39,23 @@
     _init: function() {
       var self = this;
 
-      if (this.showWidgetOnAddonClick && (this.$element.parent().hasClass('input-group') || this.$element.parent().hasClass('input-prepend'))) {
-        this.$element.parent('.input-group, .input-prepend').find('.input-group-addon').on({
-          'click.timepicker': $.proxy(this.showWidget, this)
-        });
-        this.$element.on({
-          'focus.timepicker': $.proxy(this.highlightUnit, this),
-          'click.timepicker': $.proxy(this.highlightUnit, this),
-          'keydown.timepicker': $.proxy(this.elementKeydown, this),
-          'blur.timepicker': $.proxy(this.blurElement, this),
-          'mousewheel.timepicker DOMMouseScroll.timepicker': $.proxy(this.mousewheel, this)
-        });
-      } else {
         if (this.template) {
-          this.$element.on({
+            this.$element.on({
             'focus.timepicker': $.proxy(this.showWidget, this),
             'click.timepicker': $.proxy(this.showWidget, this),
             'blur.timepicker': $.proxy(this.blurElement, this),
             'mousewheel.timepicker DOMMouseScroll.timepicker': $.proxy(this.mousewheel, this)
-          });
+            });
         } else {
-          this.$element.on({
+            this.$element.on({
             'focus.timepicker': $.proxy(this.highlightUnit, this),
             'click.timepicker': $.proxy(this.highlightUnit, this),
             'keydown.timepicker': $.proxy(this.elementKeydown, this),
             'blur.timepicker': $.proxy(this.blurElement, this),
             'mousewheel.timepicker DOMMouseScroll.timepicker': $.proxy(this.mousewheel, this)
-          });
+            });
         }
-      }
+     
 
       if (this.template !== false) {
         this.$widget = $(this.getTemplate()).on('click', $.proxy(this.widgetClick, this));

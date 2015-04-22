@@ -54,15 +54,20 @@
         <div class="page-header">
             <h1>Bedrijfsbezoek aanvragen</h1>
         </div>
-        <form class="form-horizontal">
+        <form class="form-horizontal" enctype="multipart/form-data" method="post" action="http://www.freedback.com/mail.php" accept-charset="UTF-8">
+            <div>
+                <input type="hidden" name="acctid" id="acctid" value="fg8w362nx5whxc0e" />
+                <input type="hidden" name="formid" id="formid" value="1267890" />
+                <input type="hidden" name="required_vars" id="required_vars" value="name,field-721c986e17fdc87,field-15b8c02043a9320,field-a0a15c9d7309adf,field-7b54eefe67ad552,field-5a6a70f3335c870,field-417fe78e7c5b188,field-991a8727c102c49,field-dd648e96ac6cbfe" />
+            </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Datum *</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control" />
+                    <input type="date" name="field-1ad8b7e98c82ce2" id="field-1ad8b7e98c82ce2" class="form-control" />
                 </div>
                 <label class="col-sm-2 control-label">Afgevaardigde *</label>
                 <div class="col-sm-4">
-                    <select class="form-control">
+                    <select name="field-721c986e17fdc87" id="field-721c986e17fdc87" class="form-control">
                         <option>BEBVP</option>
                         <option>BECVN</option>
                         <option>BEDML</option>
@@ -86,13 +91,13 @@
                 <div class="panel-heading">Relatie</div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Naam</label>
+                        <label class="col-sm-2 control-label">Naam *</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" />
+                            <input type="text" name="field-15b8c02043a9320" id="field-15b8c02043a9320" class="form-control" />
                         </div>
-                        <label class="col-sm-2 control-label">Type</label>
+                        <label class="col-sm-2 control-label">Type *</label>
                         <div class="col-sm-4">
-                            <select class="form-control">
+                            <select name="field-a0a15c9d7309adf" id="field-a0a15c9d7309adf" class="form-control">
                                 <option>Architect</option>
                                 <option>Bestaande klant</option>
                                 <option>Projectrelatie</option>
@@ -104,31 +109,31 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Straat</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" />
+                            <input type="text" name="field-720547e1e9430c5" id="field-720547e1e9430c5" class="form-control" />
                         </div>
                         <label class="col-sm-2 control-label">Huisnummer</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" />
+                            <input type="text" name="field-38cd7a7d691b723" id="field-38cd7a7d691b723" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Postcode</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" />
+                            <input type="text" name="field-9e1d6e1e6044eb3" id="field-9e1d6e1e6044eb3" class="form-control" />
                         </div>
                         <label class="col-sm-2 control-label">Gemeente</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" />
+                            <input type="text" name="field-eeb07267b49c4f7" id="field-eeb07267b49c4f7" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Telefoon</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" />
+                            <input type="text" name="field-d2fb6382e31a300" id="field-d2fb6382e31a300" class="form-control" />
                         </div>
                         <label class="col-sm-2 control-label">Fax</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" />
+                            <input type="text" name="field-1af79a5ab5e5916" id="field-1af79a5ab5e5916" class="form-control" />
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -137,76 +142,76 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Aantal personen *</label>
                                 <div class="col-sm-1">
-                                    <input type="text" class="form-control" id="number-persons" />
+                                    <input type="text" name="field-7b54eefe67ad552" id="field-7b54eefe67ad552" class="form-control" id="number-persons" />
                                 </div>
                             </div>
                             <div id="persons">
                                 <div class="form-group">
-                                <div class="col-sm-2">
-                                    <select class="form-control">
-                                        <option>Dhr</option>
-                                        <option>Mevr</option>
-                                    </select>
+                                    <div class="col-sm-2">
+                                        <select name="field-23941a0849a4564" id="field-23941a0849a4564" class="form-control">
+                                            <option>Dhr</option>
+                                            <option>Mevr</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-1 control-label">Naam</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-cbc06dd043ad3e6" id="field-cbc06dd043ad3e6" class="form-control" />
+                                    </div>
+                                    <label class="col-sm-1 control-label">Functie</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-3706e56cb519572" id="field-3706e56cb519572" class="form-control" />
+                                    </div>
                                 </div>
-                                <label class="col-sm-1 control-label">Naam</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <select name="field-c3f995918092f64" id="field-c3f995918092f64" class="form-control">
+                                            <option>Dhr</option>
+                                            <option>Mevr</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-1 control-label">Naam</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-f92834b17f0307f" id="field-f92834b17f0307f" class="form-control" />
+                                    </div>
+                                    <label class="col-sm-1 control-label">Functie</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-a469f0ebcadc746" id="field-a469f0ebcadc746" class="form-control" />
+                                    </div>
                                 </div>
-                                <label class="col-sm-1 control-label">Functie</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <select name="field-c2d6363ee57e8d9" id="field-c2d6363ee57e8d9" class="form-control">
+                                            <option>Dhr</option>
+                                            <option>Mevr</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-1 control-label">Naam</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-bf6ab93f7854299" id="field-bf6ab93f7854299" class="form-control" />
+                                    </div>
+                                    <label class="col-sm-1 control-label">Functie</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-9adc1391157868c" id="field-9adc1391157868c" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <select name="field-426c7ee000c78f6" id="field-426c7ee000c78f6" class="form-control">
+                                            <option>Dhr</option>
+                                            <option>Mevr</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-1 control-label">Naam</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-35369d9735018e2" id="field-35369d9735018e2" class="form-control" />
+                                    </div>
+                                    <label class="col-sm-1 control-label">Functie</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="field-4e2723cc21f29a5" id="field-4e2723cc21f29a5" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <select class="form-control">
-                                        <option>Dhr</option>
-                                        <option>Mevr</option>
-                                    </select>
-                                </div>
-                                <label class="col-sm-1 control-label">Naam</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <label class="col-sm-1 control-label">Functie</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <select class="form-control">
-                                        <option>Dhr</option>
-                                        <option>Mevr</option>
-                                    </select>
-                                </div>
-                                <label class="col-sm-1 control-label">Naam</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <label class="col-sm-1 control-label">Functie</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <select class="form-control">
-                                        <option>Dhr</option>
-                                        <option>Mevr</option>
-                                    </select>
-                                </div>
-                                <label class="col-sm-1 control-label">Naam</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <label class="col-sm-1 control-label">Functie</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-                            </div>
-                            
+
 
                         </div>
                     </div>
@@ -218,7 +223,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Reden van bezoek *</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="5"></textarea>
+                            <textarea name="field-5a6a70f3335c870" id="field-5a6a70f3335c870" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -229,13 +234,13 @@
                                     Afdelingen <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-form" role="menu">
-                                    <li><a><input type="checkbox" /> Bekleving</a></li>
-                                    <li><a><input type="checkbox" /> Cofirex</a></li>
-                                    <li><a><input type="checkbox" /> Diksmuide</a></li>
-                                    <li><a><input type="checkbox" /> Extrusie</a></li>
-                                    <li><a><input type="checkbox" /> Labo</a></li>
-                                    <li><a><input type="checkbox" /> Thermische versterking</a></li>
-                                    <li><a><input type="checkbox" /> Twinson</a></li>
+                                    <li><a><input type="checkbox" name="field-417fe78e7c5b188[]" id="field-417fe78e7c5b188_0" value="Bekleving" /> Bekleving</a></li>
+                                    <li><a><input type="checkbox" name="field-417fe78e7c5b188[]" id="field-417fe78e7c5b188_1" value="Cofirex" /> Cofirex</a></li>
+                                    <li><a><input type="checkbox" name="field-417fe78e7c5b188[]" id="field-417fe78e7c5b188_2" value="Diksmuide" /> Diksmuide</a></li>
+                                    <li><a><input type="checkbox" name="field-417fe78e7c5b188[]" id="field-417fe78e7c5b188_3" value="Extrusie" /> Extrusie</a></li>
+                                    <li><a><input type="checkbox" name="field-417fe78e7c5b188[]" id="field-417fe78e7c5b188_4" value="Labo" /> Labo</a></li>
+                                    <li><a><input type="checkbox" name="field-417fe78e7c5b188[]" id="field-417fe78e7c5b188_5" value="Thermische versterking" /> Thermische versterking</a></li>
+                                    <li><a><input type="checkbox" name="field-417fe78e7c5b188[]" id="field-417fe78e7c5b188_6" value="Twinson" /> Twinson</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -243,11 +248,11 @@
                             <div class="input-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">Van</div>
-                                    <input id="timepicker3" type="text" class="form-control" />
+                                    <input name="field-991a8727c102c49" id="field-991a8727c102c49" type="text" class="form-control" />
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-addon">Tot</div>
-                                    <input id="timepicker5" type="text" class="form-control" />
+                                    <input name="field-dd648e96ac6cbfe" id="field-dd648e96ac6cbfe" type="text" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -257,34 +262,31 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Broodjeslunch</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="Aantal personen" />
-                                </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input type="checkbox" />
+                                            <input type="checkbox" name="field-4d9bde380d36ab4[]" id="field-4d9bde380d36ab4_0" value="Te voorzien" />
                                         </span>
-                                        <input id="timepicker" type="text" class="form-control">
+                                        <input type="text" name="field-f7e47089e7e2e4c" id="field-f7e47089e7e2e4c" class="form-control" placeholder="Aantal personen" />
+                                        <input name="field-8d7e8307d46e84a" id="field-8d7e8307d46e84a" type="text" class="form-control">
                                     </div>
                                 </div>
+                                <div class="col-sm-1"></div>
                                 <label class="col-sm-2 control-label">Restaurant</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="Aantal personen" />
-                                </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input type="checkbox" />
+                                            <input type="checkbox" name="field-13db877945cca24[]" id="field-13db877945cca24_0" value="Te voorzien" />
                                         </span>
-                                        <select class="form-control">
+                                        <input type="text" name="field-4c4e3ee5bfb1262" id="field-4c4e3ee5bfb1262" class="form-control" placeholder="Aantal personen" />
+                                        <select name="field-36a2b0764459bb1" id="field-36a2b0764459bb1" class="form-control">
                                             <option>'t Forum</option>
                                             <option>'t Verschil</option>
                                             <option>Bibitor</option>
                                             <option>Flores</option>
                                             <option>Molendries</option>
                                         </select>
-                                        <input id="timepicker2" type="text" class="form-control" />
+                                        <input name="field-9c4fcdb3e4f9110" id="field-9c4fcdb3e4f9110" type="text" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -297,14 +299,14 @@
                                 <label class="col-sm-2 control-label">Filmzaal</label>
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><input type="checkbox" /></span>
+                                        <span class="input-group-addon"><input type="checkbox" name="field-4872854de09bef8[]" id="field-4872854de09bef8_0" value="Te voorzien" /></span>
                                         <div class="input-group">
                                             <div class="input-group-addon">Van</div>
-                                            <input id="timepicker4" type="text" class="form-control" />
+                                            <input type="text" name="field-9b898146d4aee30" id="field-9b898146d4aee30" class="form-control" />
                                         </div>
                                         <div class="input-group">
                                             <div class="input-group-addon">Tot</div>
-                                            <input id="timepicker5" type="text" class="form-control" />
+                                            <input type="text" name="field-6a8a19b8894f16e" id="field-6a8a19b8894f16e" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -312,14 +314,14 @@
                                 <label class="col-sm-2 control-label">Extra zaaltje</label>
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><input type="checkbox" /></span>
+                                        <span class="input-group-addon"><input type="checkbox" name="field-5f4e38f384e5183[]" id="field-5f4e38f384e5183_0" value="Te voorzien" /></span>
                                         <div class="input-group">
                                             <div class="input-group-addon">Van</div>
-                                            <input id="timepicker6" type="text" class="form-control" />
+                                            <input name="field-d784bbf127aae74" id="field-d784bbf127aae74" type="text" class="form-control" />
                                         </div>
                                         <div class="input-group">
                                             <div class="input-group-addon">Tot</div>
-                                            <input id="timepicker7" type="text" class="form-control" />
+                                            <input name="field-8bf100131c7cd2e" id="field-8bf100131c7cd2e" type="text" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -334,7 +336,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Folders<br />Stalenmateriaal<br />Gadgets</label>
                         <div class="col-sm-4">
-                            <textarea class="form-control" rows="10" placeholder="Artikelnummer + aantal"></textarea>
+                            <textarea class="form-control" name="field-17453bbcd7644da" id="field-17453bbcd7644da" rows="10" placeholder="Artikelnummer + aantal"></textarea>
                         </div>
                     </div>
                 </div>
