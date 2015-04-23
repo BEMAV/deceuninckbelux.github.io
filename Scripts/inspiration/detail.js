@@ -82,7 +82,7 @@ $(function () {
                                         .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
                                         .attr('target', '_blank')
                                         .append($('<img></img>')
-                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg')))));
+                                            .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg')))));
 
             if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
                 $('.projectinfoitemcontent img').addClass('border');
@@ -194,7 +194,7 @@ $(function () {
                                             .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/twinson-gevelbekleding-kleuren.aspx')
                                             .attr('target', '_blank')
                                             .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg')))));
+                                                .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg')))));
                 }
                 else if (project.productcode === 'p1024' || project.productcode === 'p1036') {
                     $('.projectinfo').append($('<div></div>')
@@ -217,7 +217,7 @@ $(function () {
                                             .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/standaard-gevelbekleding-pvc/standaard-gevelbekleding-pvc-kleuren.aspx')
                                             .attr('target', '_blank')
                                             .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg')))));
+                                                .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg')))));
                 }
                 else if (project.productcode === 'p2750') {
                     $('.projectinfo').append($('<div></div>')
@@ -240,7 +240,7 @@ $(function () {
                                             .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/premium-gevelbekleding-pvc-kleuren.aspx')
                                             .attr('target', '_blank')
                                             .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg')))));
+                                                .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg')))));
                 }
             }
             if (project.producttype === 'Dak' || project.producttype === 'Sous-toiture') {
@@ -260,7 +260,7 @@ $(function () {
                                         .append($('<p></p>')
                                             .append(project.color))
                                         .append($('<img></img>')
-                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))));
+                                            .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg'))));
                 }
                 else {
                     $('.projectinfo').append($('<div></div>')
@@ -283,7 +283,7 @@ $(function () {
                                             .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
                                             .attr('target', '_blank')
                                             .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg')))));
+                                                .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg')))));
                 }
             }
             if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
@@ -398,7 +398,7 @@ $(function () {
                                         .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
                                         .attr('target', '_blank')
                                     .append($('<img></img>')
-                                        .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                                        .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg'))))));
             }
             if (project.producttype === 'Terras' || project.producttype === 'Terrasse') {
                 $('.projectinfo').append($('<div></div>')
@@ -424,7 +424,7 @@ $(function () {
                                         .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
                                         .attr('target', '_blank')
                                         .append($('<img></img>')
-                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                                            .attr('src', '/Content/inspiration/Images/Colors/' + project.colorcode + '.jpg'))))));
             }
             if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
                 $('.projectinfoitemcontent img').addClass('border');
@@ -489,15 +489,15 @@ $(function () {
                                             .attr('target', '_blank')
                                             .append($('<img></img>')
                                                 .addClass('decoramic')
-                                                .attr('src', '/Content/inspiration/images/Colors/1161.jpg'))
+                                                .attr('src', '/Content/inspiration/Images/Colors/1161.jpg'))
                                             .append($('<p>Stone wit</p>'))
                                             .append($('<img></img>')
                                                 .addClass('decoramic')
-                                                .attr('src', '/Content/inspiration/images/Colors/1162.jpg'))
+                                                .attr('src', '/Content/inspiration/Images/Colors/1162.jpg'))
                                             .append($('<p>Stone grijs</p>'))
                                             .append($('<img></img>')
                                                 .addClass('decoramic')
-                                                .attr('src', '/Content/inspiration/images/Colors/1163.jpg'))
+                                                .attr('src', '/Content/inspiration/Images/Colors/1163.jpg'))
                                             .append($('<p>Stone zwart</p>')))));
             $('.socialwrap').append($('<div></div')
                         .addClass('socialicons')
