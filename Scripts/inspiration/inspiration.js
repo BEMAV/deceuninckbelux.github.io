@@ -58,6 +58,10 @@ $(function () {
 
             localStorage.setItem('projects', JSON.stringify(projectsArray));
 
+            $(window).load(function () {
+                $('#loader').fadeOut('slow');
+            });
+
             $('.option-set ul').hide();
 
             $('.filter-header').click(function () {

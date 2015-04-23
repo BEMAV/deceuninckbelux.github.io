@@ -2003,6 +2003,35 @@ table {
 
     /*START added rules JHW*/
 
+#loader{
+    opacity:1;
+    z-index:999999999;
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+    #loader .loaderwrap{
+        width:20vw;
+        margin-left:40vw;
+        margin-right:40vw;
+        height:30vh;
+        margin-top:35vh;
+        margin-bottom:35vh;
+        overflow:hidden;
+    }
+        #loader .loaderwrap #loadlogo{
+            width:100%;
+            margin-bottom:20px;
+        }
+        #loader .loaderwrap #loadspinner{
+            width:20%;
+            margin-left:40%;
+            margin-right:40%;
+        }
 
 #inspiratiemodule {
    margin-top:91px;
