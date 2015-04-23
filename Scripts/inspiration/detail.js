@@ -4,7 +4,7 @@ var project = projects[id - 1];
 var title = project.projecttype + ' ' + project.location + ' - ' + project.buildingstyle;
 var fbTitle = 'Deceuninck Inspiratie: ' + project.buildingstyle + ' ' + project.location + ' - ' + project.series;
 var fbDescription = project.buildingstyle + ' ' + project.location + ' - ' + project.series + ' ' + project.colortype + ' ' + project.color + ' | ' + project.quote;
-var fbImage = 'http://deceuninckbelux.github.io/inspiration/Content/inspiration/Images/Projects/fb_' + project.coverImg;
+var fbImage = 'http://deceuninckbelux.github.io/Content/inspiration/Images/Projects/fb_' + project.coverImg;
 var tweet = project.buildingstyle + ' ' + project.location + ' - ' + project.series + '#deceuninck #pvc ' + window.location.href;
 
 
