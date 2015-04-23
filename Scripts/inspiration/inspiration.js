@@ -68,7 +68,7 @@ $(function () {
             $('.blocklink').click(function () {
                 var href;
                 if (lang === 'nl') {
-                    href = '/' + lang + '/inspiratie/detail.html?id=' + $(this).attr('data-projectid');
+                    href = '/inspiration/' + lang + '/inspiratie/detail.html?id=' + $(this).attr('data-projectid');
                 }
                 $.fancybox({
                     href: href,
