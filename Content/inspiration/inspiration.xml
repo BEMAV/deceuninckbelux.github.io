@@ -122,8 +122,8 @@
         <customer_nl>George Chassis, Cheratte</customer_nl>
         <customer_fr>George Chassis, Cheratte</customer_fr>
         <websitecustomer>http://georgechassis.be/</websitecustomer>
-        <quote_nl>Het ontwerp van het profiel en de duurzame materialen garanderen een uitstekende isolatiewaarde.</quote_nl>
-        <quote_fr>Le concept du profilé et les matériaux durables garantissent une excellente isolation.</quote_fr>
+        <quote_nl>Zeer strakke en fijne profielen, toch stevig genoeg voor alle soorten glas.</quote_nl>
+        <quote_fr>Profilés très fins et sobres, mais suffisament robustes pour tous types de vitrage.</quote_fr>
         <coverImg>crisnee.png</coverImg>
         <img1>crisnee1.jpg</img1>
         <img2>crisnee2.jpg</img2>
@@ -337,8 +337,8 @@
         <customer_nl>Winfera, Tongeren</customer_nl>
         <customer_fr>Winfera, Tongres</customer_fr>
         <websitecustomer>http://www.winfera.be</websitecustomer>
-        <quote_nl></quote_nl>
-        <quote_fr></quote_fr>
+        <quote_nl>Het ontwerp van het profiel en de duurzame materialen garanderen een uitstekende isolatiewaarde.</quote_nl>
+        <quote_fr>Le concept du profilé et les matériaux durables garantissent une excellente isolation.</quote_fr>
         <coverImg>luik.png</coverImg>
         <img1>luik1.jpg</img1>
         <img2>luik2.jpg</img2>
@@ -549,7 +549,7 @@
         <producttype>roofline</producttype>
         <producttype_nl>Dak</producttype_nl>
         <producttype_fr>Sous-toiture</producttype_fr>
-        <series>twinson</series>
+        <series>p9576</series>
         <series_nl>Twinson</series_nl>
         <series_fr>Twinson</series_fr>
         <colortype>twinson</colortype>
@@ -594,7 +594,7 @@
         <producttype>cladding</producttype>
         <producttype_nl>Gevel</producttype_nl>
         <producttype_fr>Bardage</producttype_fr>
-        <series>twinson</series>
+        <series>p9576</series>
         <series_nl>Twinson</series_nl>
         <series_fr>Twinson</series_fr>
         <colortype>twinson</colortype>
@@ -639,7 +639,7 @@
         <producttype>cladding</producttype>
         <producttype_nl>Gevel</producttype_nl>
         <producttype_fr>Bardage</producttype_fr>
-        <series>twinson</series>
+        <series>p9576</series>
         <series_nl>Twinson</series_nl>
         <series_fr>Twinson</series_fr>
         <colortype>twinson</colortype>
@@ -684,7 +684,7 @@
             <producttype>cladding</producttype>
             <producttype_nl>Gevel</producttype_nl>
             <producttype_fr>Bardage</producttype_fr>
-            <series>twinson</series>
+            <series>p9576</series>
             <series_nl>Twinson</series_nl>
             <series_fr>Twinson</series_fr>
             <colortype>twinson</colortype>
@@ -774,7 +774,7 @@
             <producttype>fence</producttype>
             <producttype_nl>Tuinomheining</producttype_nl>
             <producttype_fr>Clôture</producttype_fr>
-            <series>twinson</series>
+            <series>p9555</series>
             <series_nl>Twinson</series_nl>
             <series_fr>Twinson</series_fr>
             <colortype>twinson</colortype>
@@ -819,7 +819,7 @@
             <producttype>terrace</producttype>
             <producttype_nl>Terras</producttype_nl>
             <producttype_fr>Terrasse</producttype_fr>
-            <series>twinson</series>
+            <series>p9555</series>
             <series_nl>Twinson</series_nl>
             <series_fr>Twinson</series_fr>
             <colortype>twinson</colortype>
@@ -864,7 +864,7 @@
             <producttype>terrace</producttype>
             <producttype_nl>Terras</producttype_nl>
             <producttype_fr>Terrasse</producttype_fr>
-            <series>twinson</series>
+            <series>p9555</series>
             <series_nl>Twinson</series_nl>
             <series_fr>Twinson</series_fr>
             <colortype>twinson</colortype>
@@ -909,7 +909,7 @@
             <producttype>interior</producttype>
             <producttype_nl>Interieur</producttype_nl>
             <producttype_fr>Intérieure</producttype_fr>
-            <series>decoramic</series>
+            <series>p110</series>
             <series_nl>Decoramic</series_nl>
             <series_fr>Decoramic</series_fr>
             <colortype>decoramic</colortype>

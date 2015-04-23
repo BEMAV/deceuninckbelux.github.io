@@ -1,0 +1,73 @@
+﻿html, body, form { margin: 0px; padding: 0px; background-color: #ffffff; }
+body { background-color: #ffffff; background-image: none !important; }
+h1, h2, h3 { color: #005da8; text-align: center; }
+#step4 h3 { text-align: left; }
+table tr td { padding: 0px; }
+#inner-wrapper { margin-bottom: 20px; }
+div.center { text-align: center; }
+#shortlinks ul li a { display: inline; font-weight: bold; }
+#header { padding-top: 1em; }
+#footer { padding-bottom: 0em; }
+a:active { top: 0px; }
+
+#formEnergyCalculator { background-color: #fff; width: 970px; margin: 0px auto; padding-bottom: 1em; }
+a.button { height: 42px; width: 142px; background-color: transparent; border-style: none; }
+.dk_label { font-weight: normal; }
+
+/** ACTION CHAIN **/
+#actionChain { background-image: url('Images/actionchain.png'); background-repeat: repeat-x; background-position: center center; width: 600px; margin-top: -20px; margin-left: 185px; position: absolute; }
+#actionChain .iconFirst { text-align: left; }
+#actionChain .iconLast { text-align: right; }
+#actionChain img { height: 40px; width: 40px; }
+#actionChain .iconFirst img { margin-left: -2px; }
+#actionChain .iconLast img { margin-right: -3px; }
+
+
+/** SECTIONS **/
+#sectionContainer { text-align: center; margin-top: 40px; }
+.section { text-align: left; display: none; background-image: url('Images/foto_2.jpg'); background-repeat: no-repeat; background-position: bottom; padding: 20px; height: 310px; }
+.section > * { margin: 20px auto; }
+.section .section { height: auto; background-image: none; margin: 0px; padding: 0px; z-index: 100; }
+#step2.section > a.button { margin-top: 8px; }
+#step2.section > table { margin-bottom: 0px; }
+#step2 a.button, #radiobuttonTableRow img { cursor: pointer; }
+
+#step1 { font-size: 13pt; }
+#step1 > div.dropdown { background: #00559f url('Images/nav_window.png') repeat-y right top; width: 700px; color: #fff; }
+/*#step1 select { float: right; width: 330px; margin: -10px 0px 0px 20px; position: absolute; }*/
+
+#step1 table { margin: 8px; }
+#step1 table td { vertical-align: middle; }
+#step1 table td:first-child { width: 240px; padding-left: 10px; }
+#step1 td:first-child { width: 340px; }
+.dropdown td { padding: 0px; margin: 0px; height: auto; }
+
+/** CSS3 **/
+.round { border-radius: 8px; }
+#sectionContainer { -moz-background-size: 100% 100%; background-size: 100% 100%; }
+#step1 > div.dropdown { -moz-background-size: 100% 100%; background-size: 100% 100%; }
+#step2 td { text-align: center; padding: 0px 20px; }
+#step2 img.productImage { height: 100px; width: 100px; margin: 0px 80px; }
+#step2 #radiobuttonTableRow td { padding-top: 10px; }
+#statsContainer { width: 700px; margin: 0px auto; }
+#step3 table { margin-bottom: 0px; }
+#step3 .section > * { margin-top: 0px; }
+#stats { width: 700px; height: 240px; margin-left: 60px; margin-top: -40px !important; }
+#stats > tbody > tr:first-child > td { height: 220px; vertical-align: bottom; }
+#stats > tbody > tr:first-child > td > table,
+#stats img, .bars td { vertical-align: bottom; }
+#stats .column td {text-align:center}
+#stats .column td.savingsCost, #statsTotalsCost { padding-bottom: 5px; color: #005da8; }
+#stats .column td.savingsCo, #statsTotalsCo2 { padding-bottom: 5px; color: #8bbc3f; }
+#stats img { margin: 0px 3px; width: 20px; height: 0px; }
+#stats .yearText td { padding: 5px; color: #005da8; height: 20px; }
+#costTotals { float: left; position: absolute; }
+#costTotals h3 { text-align: left; font-size: 1.3em; font-weight: 600; }
+.section > h1 { margin-top: 0px !important; padding-top: 0px !important; }
+
+ .activeLanguage { color: #069 !important; text-decoration: underline !important; }
+.dataTable { margin-top: 20px; margin-bottom: 20px; margin-left: 0px !important; width: 90% !important; }
+.contentScroller { width: 840px; height: 260px; overflow-y: scroll; overflow-x: hidden; }
+.formula tr:first-child td { border-bottom: 1px solid #000; }
+.formula td { padding: 10px 15px 5px 15px; }
+#radiobuttonTableRow span { font-size: 7pt; }

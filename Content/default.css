@@ -1,0 +1,118 @@
+﻿html, body, pre {
+    font-family: Arial, Helvetica, Sans-Serif;
+    font-size: 9pt;
+    color: #000;
+    background-color: #fcfcfc;
+}
+
+td {
+    margin: 10px;
+    height: 20px;
+}
+
+    td.label {
+        font-weight: bold;
+        width: 200px;
+        vertical-align: top;
+    }
+
+    td.spaceThis {
+        height: 25px;
+    }
+
+p span {
+    display: block;
+    width: 620px;
+    vertical-align: top;
+}
+
+    p span label {
+        float: none;
+    }
+
+.input {
+    margin-top: 0px;
+    width: 800px;
+}
+
+.FloatLeft {
+    display: inline;
+}
+
+.ValidationSummary li {
+    margin-left: -12px;
+    list-style-type: square;
+}
+
+.Upload {
+    width: 600px;
+    margin: 0px;
+}
+
+.Throbber {
+    float: right;
+}
+
+attachmentFileUpload input {
+    width: 600px;
+}
+
+a.simulatedLink {
+    color: #00F;
+    text-decoration: none;
+}
+
+    a.simulatedLink:hove {
+        text-decoration: underline;
+    }
+
+.TicketSuccess, .TicketSuccessWithAttachment {
+    border: 2px solid #6f6;
+    background-color: #f3fff3;
+}
+
+.TicketFailure {
+    border: 2px solid #f66;
+    background-color: #fff3f3;
+}
+
+.TicketSuccess, .TicketSuccessWithAttachment, .TicketFailure {
+    padding: 10px;
+}
+
+.modalBackground {
+    background-color: #333;
+    filter: alpha(opacity=40);
+    opacity: 0.5;
+}
+
+.ModalWindow {
+    border: 2px solid #666;
+    background: #f0f0f0;
+    padding: 20px;
+    position: absolute;
+    top: -1000px;
+}
+
+.DisplayNone {
+    display: none;
+}
+
+td.Number {
+    width: 60px;
+}
+
+td.Date {
+    width: 90px;
+}
+
+td.Status {
+}
+
+td.Reactivity {
+    width: 80px;
+}
+
+td.Quality {
+    width: 70px;
+}

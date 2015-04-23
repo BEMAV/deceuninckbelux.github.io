@@ -299,7 +299,7 @@ li {
         .wrap .content .projectinfowrap{
             display:block;
             float:left;
-            width:23%;
+            width:25%;
         }
             .wrap .content .projectinfowrap .projectinfo{
                 margin:2%;
@@ -428,6 +428,6 @@ li {
             float:left;
             width:70%;
             height:auto;
-            margin-left:5%;
+            margin-left:3%;
         }
             

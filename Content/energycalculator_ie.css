@@ -1,0 +1,6 @@
+#slider-nav p {margin-bottom: -1px;}
+#slider-nav strong {margin-top: -3px;}
+.item .noUnderline a {text-decoration:none;}
+
+ul.dropdown ul li { width: 100%; }
+ul.dropdown ul.sub_menu {filter: alpha(opacity=80); ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; }
