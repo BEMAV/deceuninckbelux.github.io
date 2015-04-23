@@ -1,32 +1,33 @@
 ﻿var projectsArray = [];
-    regionsArray = [],
-    projectTypesArray = [],
-    buildingStylesArray = [],
-    productTypesArray = [],
-    colorsArray = [],
-    colorTypesArray = [],
-    productTitlesArray = [],
-    regionsArrayFiltered = [],
-    projectTypesArrayFiltered = [],
-    buildingStylesArrayFiltered = [],
-    productTypesArrayFiltered = [],
-    colorsArrayFiltered = [],
-    colorTypesArrayFiltered = [],
-    productTitlesArrayFiltered = [],
-    regionsArray_nl = [],
-    projectTypesArray_nl = [],
-    buildingStylesArray_nl = [],
-    productTypesArray_nl = [],
-    colorsArray_nl = [],
-    colorTypesArray_nl = [],
-    productTitlesArray_nl = [],
-    regionsArray_fr = [],
-    projectTypesArray_fr = [],
-    buildingStylesArray_fr = [],
-    productTypesArray_fr = [],
-    colorsArray_fr = [],
-    colorTypesArray_fr = [],
-    productTitlesArray_fr = [];
+regionsArray = [],
+projectTypesArray = [],
+buildingStylesArray = [],
+productTypesArray = [],
+colorsArray = [],
+colorTypesArray = [],
+productTitlesArray = [],
+regionsArrayFiltered = [],
+projectTypesArrayFiltered = [],
+buildingStylesArrayFiltered = [],
+productTypesArrayFiltered = [],
+colorsArrayFiltered = [],
+colorTypesArrayFiltered = [],
+productTitlesArrayFiltered = [],
+regionsArray_nl = [],
+projectTypesArray_nl = [],
+buildingStylesArray_nl = [],
+productTypesArray_nl = [],
+colorsArray_nl = [],
+colorTypesArray_nl = [],
+productTitlesArray_nl = [],
+regionsArray_fr = [],
+projectTypesArray_fr = [],
+buildingStylesArray_fr = [],
+productTypesArray_fr = [],
+colorsArray_fr = [],
+colorTypesArray_fr = [],
+productTitlesArray_fr = [],
+locationArray = [];
 
     var $container;
     var filters = {};
@@ -72,7 +73,7 @@ $(function () {
             $('.blocklink').click(function () {
                 var href;
                 if (lang === 'nl') {
-                    href = '/inspiration/' + lang + '/inspiratie/detail.html?id=' + $(this).attr('data-projectid');
+                    href = '/inspiration/' + lang + '/inspiratie/projects/'+$(this).attr('data-projectlocation')+'.html';
                 }
                 $.fancybox({
                     href: href,
@@ -124,6 +125,7 @@ function createArrays(project, countProjects, lang) {
     colorsArray.push(project.find('color').text());
     colorTypesArray.push(project.find('colortype').text());
     productTitlesArray.push(project.find('producttitle').text());
+    locationArray.push(project.find('location').text());
 
     window['regionsArray_' + lang].push(project.find('region_' + lang).text());
     window['projectTypesArray_' + lang].push(project.find('projecttype_' + lang).text());
@@ -207,7 +209,7 @@ function showProject(count, lang) {
                             .addClass(colorsArray[count])
                             .addClass(productTitlesArray[count])
                             .attr({ id: 'project-' + projectNumber })
-                            .attr('data-projectid',projectNumber)
+                            .attr('data-projectlocation',locationArray[count])
                             .append($('<img />')
                                 .attr({ src: imgPathBase + projectsArray[count].coverImg }))
                             .append($('<div></div>')
