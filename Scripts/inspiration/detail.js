@@ -1,720 +1,743 @@
 ﻿var id = getUrlParameter('id');
-var projects = JSON.parse(localStorage.getItem('projects'));
-var project = projects[id - 1];
-var title = project.projecttype + ' ' + project.location + ' - ' + project.buildingstyle;
-var fbTitle = 'Deceuninck Inspiratie: ' + project.buildingstyle + ' ' + project.location + ' - ' + project.series;
-var fbDescription = project.buildingstyle + ' ' + project.location + ' - ' + project.series + ' ' + project.colortype + ' ' + project.color + ' | ' + project.quote;
-var fbImage = 'http://deceuninckbelux.github.io/Content/inspiration/Images/Projects/fb_' + project.coverImg;
-var tweet = project.buildingstyle + ' ' + project.location + ' - ' + project.series + '#deceuninck #pvc ' + window.location.href;
+var projects = [];
 
 
 $(function () {
-    $('meta[name=og\\:title]').attr('content', fbTitle);
-    $('meta[name=og\\:description]').attr('content', fbDescription);
-    $('meta[name=og\\:image]').attr('content', fbImage);
-    $('meta[name=og\\:image\\:width]').attr('content', '600px');
-    $('meta[name=og\\:image\\:height]').attr('content', '315px');
+    $.ajax({
+        type: "GET",
+        url: "/Content/inspiration/inspiration.xml",
+        dataType: "xml",
+        success: function (xml) {
+            var countProjects = 1;
+            var lang = 'nl';
+
+            $(xml).find('project').each(function () {
+                createProjects($(this), countProjects, lang);
+
+                countProjects++;
+
+            });
+
+            var project = projects[id - 1];
+            var title = project.projecttype + ' ' + project.location + ' - ' + project.buildingstyle;
+            var fbTitle = 'Deceuninck Inspiratie: ' + project.buildingstyle + ' ' + project.location + ' - ' + project.series;
+            var fbDescription = project.buildingstyle + ' ' + project.location + ' - ' + project.series + ' ' + project.colortype + ' ' + project.color + ' | ' + project.quote;
+            var fbImage = 'http://deceuninckbelux.github.io/Content/inspiration/Images/Projects/fb_' + project.coverImg;
+            var tweet = project.buildingstyle + ' ' + project.location + ' - ' + project.series + '#deceuninck #pvc ' + window.location.href;
+
+            $('meta[name=og\\:title]').attr('content', fbTitle)
+            $('meta[name=og\\:description]').attr('content', fbDescription);
+            $('meta[name=og\\:image]').attr('content', fbImage);
+            $('meta[name=og\\:image\\:width]').attr('content', '600px');
+            $('meta[name=og\\:image\\:height]').attr('content', '315px');
 
 
-    $('.title').append($('<h1></h1>')
-                .append(title));
-    $('.quote').append($('<h3></h3>')
-                .addClass('quote')
-                .append('"' + project.quote + '"'));
+            $('.title').append($('<h1></h1>')
+                        .append(title));
+            $('.quote').append($('<h3></h3>')
+                        .addClass('quote')
+                        .append('"' + project.quote + '"'));
 
-    switch (project.producttitle) {
-        case 'Ramen & deuren':
-        case 'Fenêtres & portes':
-            $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('windowsdoors')
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .append($('<i></i>')
-                                        .addClass('fa fa-map-marker')))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                    .append($('<h4></h4>')
-                                        .append('Locatie'))
-                                    .append($('<p></p>')
-                                        .append(project.location + ', ' + project.country))));
-            $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('windowsdoors')
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .append($('<i></i>')
-                                        .addClass('fa fa-home')))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                    .append($('<h4></h4>')
-                                        .append('Bouwstijl'))
-                                    .append($('<p></p>')
-                                        .append(project.buildingstyle))));
-            if (project.customer !== '') {
-                $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('windowsdoors')
-                                    .append($('<a></a>')
-                                        .attr('href', project.websitecustomer)
-                                        .attr('target', '_blank')
+            switch (project.producttitle) {
+                case 'Ramen & deuren':
+                case 'Fenêtres & portes':
+                    $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('windowsdoors')
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemicon')
                                             .append($('<i></i>')
-                                                .addClass('fa fa-wrench')))
+                                                .addClass('fa fa-map-marker')))
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemcontent')
                                             .append($('<h4></h4>')
-                                                .append('Fabrikant'))
+                                                .append('Locatie'))
                                             .append($('<p></p>')
-                                                .append(project.customer)))));
-            }
-            if (project.productcode === 'zendow') {
-                $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('windowsdoors')
-                                .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/zendow-ramen.aspx')
-                                        .attr('target', '_blank')
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemicon')
-                                        .addClass('windowsicon'))
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemcontent')
-                                        .append($('<h4></h4>')
-                                            .append('Raamprofiel'))
-                                        .append($('<p></p>')
-                                            .append(project.series))
-                                        .append($('<p></p>')
-                                            .append(project.colortype))
-                                        .append($('<p></p>')
-                                            .append(project.color))
+                                                .append(project.location + ', ' + project.country))));
+                    $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('windowsdoors')
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemicon')
+                                            .append($('<i></i>')
+                                                .addClass('fa fa-home')))
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemcontent')
+                                            .append($('<h4></h4>')
+                                                .append('Bouwstijl'))
+                                            .append($('<p></p>')
+                                                .append(project.buildingstyle))));
+                    if (project.customer !== '') {
+                        $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('windowsdoors')
+                                            .append($('<a></a>')
+                                                .attr('href', project.websitecustomer)
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .append($('<i></i>')
+                                                        .addClass('fa fa-wrench')))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Fabrikant'))
+                                                    .append($('<p></p>')
+                                                        .append(project.customer)))));
+                    }
+                    if (project.productcode === 'zendow') {
+                        $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('windowsdoors')
                                         .append($('<a></a>')
-                                            .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
-                                            .attr('target', '_blank')
-                                            .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-            }
-            else if (project.productcode === 'zendowneo') {
-                $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('windowsdoors')
-                                .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/zendowneo-standaard.aspx')
-                                        .attr('target', '_blank')
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemicon')
-                                        .addClass('windowsicon'))
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemcontent')
-                                        .append($('<h4></h4>')
-                                            .append('Raamprofiel'))
-                                        .append($('<p></p>')
-                                            .append(project.series))
-                                        .append($('<p></p>')
-                                            .append(project.colortype))
-                                        .append($('<p></p>')
-                                            .append(project.color))
+                                                .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/zendow-ramen.aspx')
+                                                .attr('target', '_blank')
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemicon')
+                                                .addClass('windowsicon'))
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemcontent')
+                                                .append($('<h4></h4>')
+                                                    .append('Raamprofiel'))
+                                                .append($('<p></p>')
+                                                    .append(project.series))
+                                                .append($('<p></p>')
+                                                    .append(project.colortype))
+                                                .append($('<p></p>')
+                                                    .append(project.color))
+                                                .append($('<a></a>')
+                                                    .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
+                                                    .attr('target', '_blank')
+                                                    .append($('<img></img>')
+                                                        .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                    }
+                    else if (project.productcode === 'zendowneo') {
+                        $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('windowsdoors')
                                         .append($('<a></a>')
-                                            .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
-                                            .attr('target', '_blank')
-                                            .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-            }
-            else if (project.productcode === 'zendowneopremium') {
-                $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('windowsdoors')
-                                .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/pvc-ramen.aspx')
-                                        .attr('target', '_blank')
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemicon')
-                                        .addClass('windowsicon'))
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemcontent')
-                                        .append($('<h4></h4>')
-                                            .append('Raamprofiel'))
-                                        .append($('<p></p>')
-                                            .append(project.series))
-                                        .append($('<p></p>')
-                                            .append(project.colortype))
-                                        .append($('<p></p>')
-                                            .append(project.color))
+                                                .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/zendowneo-standaard.aspx')
+                                                .attr('target', '_blank')
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemicon')
+                                                .addClass('windowsicon'))
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemcontent')
+                                                .append($('<h4></h4>')
+                                                    .append('Raamprofiel'))
+                                                .append($('<p></p>')
+                                                    .append(project.series))
+                                                .append($('<p></p>')
+                                                    .append(project.colortype))
+                                                .append($('<p></p>')
+                                                    .append(project.color))
+                                                .append($('<a></a>')
+                                                    .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
+                                                    .attr('target', '_blank')
+                                                    .append($('<img></img>')
+                                                        .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                    }
+                    else if (project.productcode === 'zendowneopremium') {
+                        $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('windowsdoors')
                                         .append($('<a></a>')
-                                            .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
-                                            .attr('target', '_blank')
-                                            .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-            }
-            else if (project.productcode === 'zendowneoautentica') {
-                $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('windowsdoors')
-                                .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/zendowneo-autentica.aspx')
-                                        .attr('target', '_blank')
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemicon')
-                                        .addClass('windowsicon'))
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemcontent')
-                                        .append($('<h4></h4>')
-                                            .append('Raamprofiel'))
-                                        .append($('<p></p>')
-                                            .append(project.series))
-                                        .append($('<p></p>')
-                                            .append(project.colortype))
-                                        .append($('<p></p>')
-                                            .append(project.color))
+                                                .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/pvc-ramen.aspx')
+                                                .attr('target', '_blank')
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemicon')
+                                                .addClass('windowsicon'))
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemcontent')
+                                                .append($('<h4></h4>')
+                                                    .append('Raamprofiel'))
+                                                .append($('<p></p>')
+                                                    .append(project.series))
+                                                .append($('<p></p>')
+                                                    .append(project.colortype))
+                                                .append($('<p></p>')
+                                                    .append(project.color))
+                                                .append($('<a></a>')
+                                                    .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
+                                                    .attr('target', '_blank')
+                                                    .append($('<img></img>')
+                                                        .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                    }
+                    else if (project.productcode === 'zendowneoautentica') {
+                        $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('windowsdoors')
                                         .append($('<a></a>')
-                                            .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
-                                            .attr('target', '_blank')
-                                            .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-            }
-            else if (project.productcode === 'monorail') {
-                $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('windowsdoors')
-                                .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/pvc-schuifdeuren.aspx')
-                                        .attr('target', '_blank')
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemicon')
-                                        .addClass('windowsicon'))
-                                    .append($('<div></div>')
-                                        .addClass('projectinfoitemcontent')
-                                        .append($('<h4></h4>')
-                                            .append('Raamprofiel'))
-                                        .append($('<p></p>')
-                                            .append(project.series))
-                                        .append($('<p></p>')
-                                            .append(project.colortype))
-                                        .append($('<p></p>')
-                                            .append(project.color))
+                                                .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/zendowneo-autentica.aspx')
+                                                .attr('target', '_blank')
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemicon')
+                                                .addClass('windowsicon'))
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemcontent')
+                                                .append($('<h4></h4>')
+                                                    .append('Raamprofiel'))
+                                                .append($('<p></p>')
+                                                    .append(project.series))
+                                                .append($('<p></p>')
+                                                    .append(project.colortype))
+                                                .append($('<p></p>')
+                                                    .append(project.color))
+                                                .append($('<a></a>')
+                                                    .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
+                                                    .attr('target', '_blank')
+                                                    .append($('<img></img>')
+                                                        .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                    }
+                    else if (project.productcode === 'monorail') {
+                        $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('windowsdoors')
                                         .append($('<a></a>')
-                                            .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
-                                            .attr('target', '_blank')
-                                            .append($('<img></img>')
-                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-            }
+                                                .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/pvc-schuifdeuren.aspx')
+                                                .attr('target', '_blank')
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemicon')
+                                                .addClass('windowsicon'))
+                                            .append($('<div></div>')
+                                                .addClass('projectinfoitemcontent')
+                                                .append($('<h4></h4>')
+                                                    .append('Raamprofiel'))
+                                                .append($('<p></p>')
+                                                    .append(project.series))
+                                                .append($('<p></p>')
+                                                    .append(project.colortype))
+                                                .append($('<p></p>')
+                                                    .append(project.color))
+                                                .append($('<a></a>')
+                                                    .attr('href', 'http://www.deceuninck.be/nl/ramen-deuren/kleurencollectie-2015-2016.aspx')
+                                                    .attr('target', '_blank')
+                                                    .append($('<img></img>')
+                                                        .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                    }
 
-            if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
-                $('.projectinfoitemcontent img').addClass('border');
-            }
+                    if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
+                        $('.projectinfoitemcontent img').addClass('border');
+                    }
 
-            $('.socialwrap').append($('<div></div')
-                        .addClass('socialicons')
-                        .addClass('windowsdoors')
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-facebook'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://twitter.com/home?status=' + tweet)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-twitter'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'http://pinterest.com/pin/create/button/?url={URI-encoded URL of the page to pin}&media={URI-encoded URL of the image to pin}&description={optional URI-encoded description}' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-pinterest-p'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-linkedin'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-google-plus')))));
+                    $('.socialwrap').append($('<div></div')
+                                .addClass('socialicons')
+                                .addClass('windowsdoors')
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-facebook'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://twitter.com/home?status=' + tweet)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-twitter'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'http://pinterest.com/pin/create/button/?url={URI-encoded URL of the page to pin}&media={URI-encoded URL of the image to pin}&description={optional URI-encoded description}' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-pinterest-p'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-linkedin'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-google-plus')))));
 
-            break;
-        case 'Dak & gevel':
-        case 'Bardage & sous-toiture':
-            $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
+                    break;
+                case 'Dak & gevel':
+                case 'Bardage & sous-toiture':
+                    $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('rooflinecladding')
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemicon')
+                                            .append($('<i></i>')
+                                                .addClass('fa fa-map-marker')))
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemcontent')
+                                            .append($('<h4></h4>')
+                                                .append('Locatie'))
+                                            .append($('<p></p>')
+                                                .append(project.location + ', ' + project.country))));
+                    $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('rooflinecladding')
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemicon')
+                                            .append($('<i></i>')
+                                                .addClass('fa fa-home')))
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemcontent')
+                                            .append($('<h4></h4>')
+                                                .append('Bouwstijl'))
+                                            .append($('<p></p>')
+                                                .append(project.buildingstyle))));
+                    if (project.customer !== '') {
+                        $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('rooflinecladding')
+                                            .append($('<a></a>')
+                                                .attr('href', project.websitecustomer)
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .append($('<i></i>')
+                                                        .addClass('fa fa-wrench')))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Plaatser'))
+                                                    .append($('<p></p>')
+                                                        .append(project.customer)))));
+                    }
+                    if (project.producttype === 'Gevel' || project.producttype === 'Façade') {
+                        if (project.productcode === 'p9576' || project.productcode === 'p9596') {
+                            $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('rooflinecladding')
+                                            .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/premium-gevelbekleding-twinson/premium-gesloten-gevelbekleding.aspx')
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .addClass('claddingicon'))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Gevel'))
+                                                    .append($('<p></p>')
+                                                        .append(project.series))
+                                                    .append($('<p></p>')
+                                                        .append(project.color))
+                                                    .append($('<a></a>')
+                                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/twinson-gevelbekleding-kleuren.aspx')
+                                                        .attr('target', '_blank')
+                                                        .append($('<img></img>')
+                                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg')))))));
+                        }
+                        else if (project.productcode === 'p1024' || project.productcode === 'p1036') {
+                            $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('rooflinecladding')
+                                            .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/standaard-gevelbekleding-pvc/standaard-gevelbekleding-pvc-houtnerfstructuur.aspx')
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .addClass('claddingicon'))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Gevel'))
+                                                    .append($('<p></p>')
+                                                        .append(project.series))
+                                                    .append($('<p></p>')
+                                                        .append(project.colortype))
+                                                    .append($('<p></p>')
+                                                        .append(project.color))
+                                                    .append($('<a></a>')
+                                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/standaard-gevelbekleding-pvc/standaard-gevelbekleding-pvc-kleuren.aspx')
+                                                        .attr('target', '_blank')
+                                                        .append($('<img></img>')
+                                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                        }
+                        else if (project.productcode === 'p2750') {
+                            $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('rooflinecladding')
+                                            .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/premium-gevelbekleding-pvc.aspx')
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .addClass('claddingicon'))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Gevel'))
+                                                    .append($('<p></p>')
+                                                        .append(project.series))
+                                                    .append($('<p></p>')
+                                                        .append(project.colortype))
+                                                    .append($('<p></p>')
+                                                        .append(project.color))
+                                                    .append($('<a></a>')
+                                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/premium-gevelbekleding-pvc-kleuren.aspx')
+                                                        .attr('target', '_blank')
+                                                        .append($('<img></img>')
+                                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                        }
+                    }
+                    if (project.producttype === 'Dak' || project.producttype === 'Sous-toiture') {
+                        if (project.colortype === 'Twinson') {
+                            $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('rooflinecladding')
+                                            .addClass('outdoorliving')
+                                            .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-twinson.aspx')
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .addClass('rooficon'))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Dak'))
+                                                    .append($('<p></p>')
+                                                        .append(project.series))
+                                                    .append($('<p></p>')
+                                                        .append(project.color))
+                                                    .append($('<a></a>')
+                                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-gootbekleding/dakoversteken-kleuren.aspx')
+                                                        .attr('target', '_blank')
+                                                        .append($('<img></img>')
+                                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                        }
+                        else {
+                            $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('rooflinecladding')
+                                            .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-twinson.aspx')
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .addClass('rooficon'))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Dak'))
+                                                    .append($('<p></p>')
+                                                        .append(project.series))
+                                                    .append($('<p></p>')
+                                                        .append(project.colortype))
+                                                    .append($('<p></p>')
+                                                        .append(project.color))
+                                                    .append($('<a></a>')
+                                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-gootbekleding/dakoversteken-kleuren.aspx')
+                                                        .attr('target', '_blank')
+                                                        .append($('<img></img>')
+                                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                        }
+                    }
+                    if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
+                        $('.projectinfoitemcontent img').addClass('border');
+                    }
+
+                    $('.socialwrap').append($('<div></div')
+                                .addClass('socialicons')
                                 .addClass('rooflinecladding')
                                 .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .append($('<i></i>')
-                                        .addClass('fa fa-map-marker')))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                    .append($('<h4></h4>')
-                                        .append('Locatie'))
-                                    .append($('<p></p>')
-                                        .append(project.location + ', ' + project.country))));
-            $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('rooflinecladding')
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .append($('<i></i>')
-                                        .addClass('fa fa-home')))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                    .append($('<h4></h4>')
-                                        .append('Bouwstijl'))
-                                    .append($('<p></p>')
-                                        .append(project.buildingstyle))));
-            if (project.customer !== '') {
-                $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('rooflinecladding')
+                                    .addClass('icon')
                                     .append($('<a></a>')
-                                        .attr('href', project.websitecustomer)
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
                                         .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-facebook'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://twitter.com/home?status=' + tweet)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-twitter'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-pinterest-p'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-linkedin'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-google-plus')))));
+
+                    break;
+
+                case 'Tuintoepassingen':
+                case 'Aménagement extérieur':
+                    $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('outdoorliving')
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemicon')
                                             .append($('<i></i>')
-                                                .addClass('fa fa-wrench')))
+                                                .addClass('fa fa-map-marker')))
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemcontent')
                                             .append($('<h4></h4>')
-                                                .append('Plaatser'))
+                                                .append('Locatie'))
                                             .append($('<p></p>')
-                                                .append(project.customer)))));
-            }
-            if (project.producttype === 'Gevel' || project.producttype === 'Façade') {
-                if (project.productcode === 'p9576' || project.productcode === 'p9596') {
+                                                .append(project.location + ', ' + project.country))));
                     $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('rooflinecladding')
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/premium-gevelbekleding-twinson/premium-gesloten-gevelbekleding.aspx')
-                                        .attr('target', '_blank')
-                                        .append($('<div></div>')
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemicon')
-                                            .addClass('claddingicon'))
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemcontent')
-                                            .append($('<h4></h4>')
-                                                .append('Gevel'))
-                                            .append($('<p></p>')
-                                                .append(project.series))
-                                            .append($('<p></p>')
-                                                .append(project.color))
-                                            .append($('<a></a>')
-                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/twinson-gevelbekleding-kleuren.aspx')
-                                                .attr('target', '_blank')
-                                                .append($('<img></img>')
-                                                    .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg')))))));
-                }
-                else if (project.productcode === 'p1024' || project.productcode === 'p1036') {
-                    $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('rooflinecladding')
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/standaard-gevelbekleding-pvc/standaard-gevelbekleding-pvc-houtnerfstructuur.aspx')
-                                        .attr('target', '_blank')
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemicon')
-                                            .addClass('claddingicon'))
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemcontent')
-                                            .append($('<h4></h4>')
-                                                .append('Gevel'))
-                                            .append($('<p></p>')
-                                                .append(project.series))
-                                            .append($('<p></p>')
-                                                .append(project.colortype))
-                                            .append($('<p></p>')
-                                                .append(project.color))
-                                            .append($('<a></a>')
-                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/standaard-gevelbekleding-pvc/standaard-gevelbekleding-pvc-kleuren.aspx')
-                                                .attr('target', '_blank')
-                                                .append($('<img></img>')
-                                                    .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-                }
-                else if (project.productcode === 'p2750') {
-                    $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('rooflinecladding')
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/premium-gevelbekleding-pvc.aspx')
-                                        .attr('target', '_blank')
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemicon')
-                                            .addClass('claddingicon'))
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemcontent')
-                                            .append($('<h4></h4>')
-                                                .append('Gevel'))
-                                            .append($('<p></p>')
-                                                .append(project.series))
-                                            .append($('<p></p>')
-                                                .append(project.colortype))
-                                            .append($('<p></p>')
-                                                .append(project.color))
-                                            .append($('<a></a>')
-                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/premium-gevelbekleding-pvc-kleuren.aspx')
-                                                .attr('target', '_blank')
-                                                .append($('<img></img>')
-                                                    .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-                }
-            }
-            if (project.producttype === 'Dak' || project.producttype === 'Sous-toiture') {
-                if (project.colortype === 'Twinson') {
-                    $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('rooflinecladding')
-                                    .addClass('outdoorliving')
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-twinson.aspx')
-                                        .attr('target', '_blank')
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemicon')
-                                            .addClass('rooficon'))
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemcontent')
-                                            .append($('<h4></h4>')
-                                                .append('Dak'))
-                                            .append($('<p></p>')
-                                                .append(project.series))
-                                            .append($('<p></p>')
-                                                .append(project.color))
-                                            .append($('<a></a>')
-                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-gootbekleding/dakoversteken-kleuren.aspx')
-                                                .attr('target', '_blank')
-                                                .append($('<img></img>')
-                                                    .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-                }
-                else {
-                    $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('rooflinecladding')
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-twinson.aspx')
-                                        .attr('target', '_blank')
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemicon')
-                                            .addClass('rooficon'))
-                                        .append($('<div></div>')
-                                            .addClass('projectinfoitemcontent')
-                                            .append($('<h4></h4>')
-                                                .append('Dak'))
-                                            .append($('<p></p>')
-                                                .append(project.series))
-                                            .append($('<p></p>')
-                                                .append(project.colortype))
-                                            .append($('<p></p>')
-                                                .append(project.color))
-                                            .append($('<a></a>')
-                                                .attr('href', 'http://www.deceuninck.be/nl/dak-gevel/dakoversteken-gootbekleding/dakoversteken-kleuren.aspx')
-                                                .attr('target', '_blank')
-                                                .append($('<img></img>')
-                                                    .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-                }
-            }
-            if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
-                $('.projectinfoitemcontent img').addClass('border');
-            }
-
-            $('.socialwrap').append($('<div></div')
-                        .addClass('socialicons')
-                        .addClass('rooflinecladding')
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-facebook'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://twitter.com/home?status=' + tweet)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-twitter'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-pinterest-p'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-linkedin'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-google-plus')))));
-
-            break;
-
-        case 'Tuintoepassingen':
-        case 'Aménagement extérieur':
-            $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('outdoorliving')
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .append($('<i></i>')
-                                        .addClass('fa fa-map-marker')))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                    .append($('<h4></h4>')
-                                        .append('Locatie'))
-                                    .append($('<p></p>')
-                                        .append(project.location + ', ' + project.country))));
-            $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('outdoorliving')
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .append($('<i></i>')
-                                        .addClass('fa fa-home')))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                    .append($('<h4></h4>')
-                                        .append('Bouwstijl'))
-                                    .append($('<p></p>')
-                                        .append(project.buildingstyle))));
-            if (project.customer !== '') {
-                $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('outdoorliving')
-                                    .append($('<a></a>')
-                                        .attr('href', project.websitecustomer)
+                                        .addClass('projectinfoitem')
+                                        .addClass('outdoorliving')
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemicon')
                                             .append($('<i></i>')
-                                                .addClass('fa fa-wrench')))
+                                                .addClass('fa fa-home')))
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemcontent')
                                             .append($('<h4></h4>')
-                                                .append('Plaatser'))
+                                                .append('Bouwstijl'))
                                             .append($('<p></p>')
-                                                .append(project.customer)))));
-            }
-            if (project.producttype === 'Tuinomheining' || project.producttype === 'Clôture') {
-                $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('outdoorliving')
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/tuinafsluitingen.aspx')
-                                        .attr('target', '_blank')
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .addClass('fenceicon'))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                .append($('<h4></h4>')
-                                    .append('Tuinomheining'))
-                                .append($('<p></p>')
-                                    .append(project.series))
-                                .append($('<p></p>')
-                                    .append(project.color))
-                                .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/tuinafsluitingen/tuinomheining-kleuren.aspx')
-                                        .attr('target', '_blank')
-                                    .append($('<img></img>')
-                                        .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-            }
-            if (project.producttype === 'Terras' || project.producttype === 'Terrasse') {
-                $('.projectinfo').append($('<div></div>')
-                                .addClass('projectinfoitem')
-                                .addClass('outdoorliving')
-                                .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/twinson-terras.aspx')
-                                        .attr('target', '_blank')
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemicon')
-                                    .addClass('terraceicon'))
-                                .append($('<div></div>')
-                                    .addClass('projectinfoitemcontent')
-                                    .append($('<h4></h4>')
-                                        .append('Terras'))
-                                    .append($('<p></p>')
-                                        .append(project.series))
-                                    .append($('<p></p>')
-                                        .append(project.colortype))
-                                    .append($('<p></p>')
-                                        .append(project.color))
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/twinson-terras-kleuren.aspx')
-                                        .attr('target', '_blank')
-                                        .append($('<img></img>')
-                                            .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
-            }
-            if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
-                $('.projectinfoitemcontent img').addClass('border');
-            }
-            $('.socialwrap').append($('<div></div')
-                        .addClass('socialicons')
-                        .addClass('outdoorliving')
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-facebook'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://twitter.com/home?status=' + tweet)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-twitter'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-pinterest-p'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-linkedin'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-google-plus')))));
-
-            break;
-
-        case 'Interieur':
-        case 'Intérieure':
-            $('.projectinfo').append($('<div></div>')
-                                    .addClass('projectinfoitem')
-                                    .addClass('interior')
-                                    .append($('<a></a>')
-                                        .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/twinson-terras.aspx')
-                                        .attr('target', '_blank')
+                                                .append(project.buildingstyle))));
+                    if (project.customer !== '') {
+                        $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('outdoorliving')
+                                            .append($('<a></a>')
+                                                .attr('href', project.websitecustomer)
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .append($('<i></i>')
+                                                        .addClass('fa fa-wrench')))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Plaatser'))
+                                                    .append($('<p></p>')
+                                                        .append(project.customer)))));
+                    }
+                    if (project.producttype === 'Tuinomheining' || project.producttype === 'Clôture') {
+                        $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('outdoorliving')
+                                            .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/tuinafsluitingen.aspx')
+                                                .attr('target', '_blank')
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemicon')
-                                            .addClass('interioricon'))
+                                            .addClass('fenceicon'))
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemcontent')
+                                        .append($('<h4></h4>')
+                                            .append('Tuinomheining'))
+                                        .append($('<p></p>')
+                                            .append(project.series))
+                                        .append($('<p></p>')
+                                            .append(project.color))
+                                        .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/tuinafsluitingen/tuinomheining-kleuren.aspx')
+                                                .attr('target', '_blank')
+                                            .append($('<img></img>')
+                                                .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                    }
+                    if (project.producttype === 'Terras' || project.producttype === 'Terrasse') {
+                        $('.projectinfo').append($('<div></div>')
+                                        .addClass('projectinfoitem')
+                                        .addClass('outdoorliving')
+                                        .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/twinson-terras.aspx')
+                                                .attr('target', '_blank')
+                                        .append($('<div></div>')
+                                            .addClass('projectinfoitemicon')
+                                            .addClass('terraceicon'))
                                         .append($('<div></div>')
                                             .addClass('projectinfoitemcontent')
                                             .append($('<h4></h4>')
-                                                .append('Interieur'))
+                                                .append('Terras'))
                                             .append($('<p></p>')
                                                 .append(project.series))
+                                            .append($('<p></p>')
+                                                .append(project.colortype))
+                                            .append($('<p></p>')
+                                                .append(project.color))
                                             .append($('<a></a>')
-                                                .attr('href', 'http://www.deceuninck.be/nl/interieurtoepassingen/wand-plafondbekleding/wand-plafondbekleding-decoramic.aspx')
+                                                .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/twinson-terras-kleuren.aspx')
                                                 .attr('target', '_blank')
                                                 .append($('<img></img>')
-                                                    .addClass('decoramic')
-                                                    .attr('src', '/Content/inspiration/images/Colors/1161.jpg'))
-                                                .append($('<p>Stone wit</p>'))
-                                                .append($('<img></img>')
-                                                    .addClass('decoramic')
-                                                    .attr('src', '/Content/inspiration/images/Colors/1162.jpg'))
-                                                .append($('<p>Stone grijs</p>'))
-                                                .append($('<img></img>')
-                                                    .addClass('decoramic')
-                                                    .attr('src', '/Content/inspiration/images/Colors/1163.jpg'))
-                                                .append($('<p>Stone zwart</p>'))))));
-            $('.socialwrap').append($('<div></div')
-                        .addClass('socialicons')
-                        .addClass('interior')
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-facebook'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://twitter.com/home?status=' + tweet)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-twitter'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-pinterest-p'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-linkedin'))))
-                        .append($('<div></div>')
-                            .addClass('icon')
-                            .append($('<a></a>')
-                                .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                                .attr('target', '_blank')
-                                .append($('<i></i>')
-                                    .addClass('fa fa-google-plus')))));
-            break;
-    };
+                                                    .attr('src', '/Content/inspiration/images/Colors/' + project.colorcode + '.jpg'))))));
+                    }
+                    if (project.colorcode === '0003' || project.colorcode === '0007' || project.colorcode === '0096' || project.colorcode === '1665' || project.colorcode === '6003' || project.colorcode === '6096' || project.colorcode === '9003' || project.colorcode === '1100' || project.colorcode === '1019' || project.colorcode === '1096') {
+                        $('.projectinfoitemcontent img').addClass('border');
+                    }
+                    $('.socialwrap').append($('<div></div')
+                                .addClass('socialicons')
+                                .addClass('outdoorliving')
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-facebook'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://twitter.com/home?status=' + tweet)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-twitter'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-pinterest-p'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-linkedin'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-google-plus')))));
 
-    if (project.img1 !== '') {
-        $('.pgwSlider').append($('<li></li>')
-                                    .append($('<img>')
-                                        .attr('src', '/Content/inspiration/Images/Projects/' + project.img1)));
-    }
-    if (project.img2 !== '') {
-        $('.pgwSlider').append($('<li></li>')
-                                    .append($('<img>')
-                                        .attr('src', '/Content/inspiration/Images/Projects/' + project.img2)));
-    }
-    if (project.img3 !== '') {
-        $('.pgwSlider').append($('<li></li>')
-                                    .append($('<img>')
-                                        .attr('src', '/Content/inspiration/Images/Projects/' + project.img3)));
-    }
-    if (project.img4 !== '') {
-        $('.pgwSlider').append($('<li></li>')
-                                    .append($('<img>')
-                                        .attr('src', '/Content/inspiration/Images/Projects/' + project.img4)));
-    }
-    if (project.img5 !== '') {
-        $('.pgwSlider').append($('<li></li>')
-                                    .append($('<img>')
-                                        .attr('src', '/Content/inspiration/Images/Projects/' + project.img5)));
-    }
-    if (project.img6 !== '') {
-        $('.pgwSlider').append($('<li></li>')
-                                    .append($('<img>')
-                                        .attr('src', '/Content/inspiration/Images/Projects/' + project.img6)));
-    }
+                    break;
 
-    $('.pgwSlider').pgwSlider({
-        listPosition: 'right',
-        displayControls: true,
-        verticalCentering: true
+                case 'Interieur':
+                case 'Intérieure':
+                    $('.projectinfo').append($('<div></div>')
+                                            .addClass('projectinfoitem')
+                                            .addClass('interior')
+                                            .append($('<a></a>')
+                                                .attr('href', 'http://www.deceuninck.be/nl/tuintoepassingen/twinson-terras.aspx')
+                                                .attr('target', '_blank')
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemicon')
+                                                    .addClass('interioricon'))
+                                                .append($('<div></div>')
+                                                    .addClass('projectinfoitemcontent')
+                                                    .append($('<h4></h4>')
+                                                        .append('Interieur'))
+                                                    .append($('<p></p>')
+                                                        .append(project.series))
+                                                    .append($('<a></a>')
+                                                        .attr('href', 'http://www.deceuninck.be/nl/interieurtoepassingen/wand-plafondbekleding/wand-plafondbekleding-decoramic.aspx')
+                                                        .attr('target', '_blank')
+                                                        .append($('<img></img>')
+                                                            .addClass('decoramic')
+                                                            .attr('src', '/Content/inspiration/images/Colors/1161.jpg'))
+                                                        .append($('<p>Stone wit</p>'))
+                                                        .append($('<img></img>')
+                                                            .addClass('decoramic')
+                                                            .attr('src', '/Content/inspiration/images/Colors/1162.jpg'))
+                                                        .append($('<p>Stone grijs</p>'))
+                                                        .append($('<img></img>')
+                                                            .addClass('decoramic')
+                                                            .attr('src', '/Content/inspiration/images/Colors/1163.jpg'))
+                                                        .append($('<p>Stone zwart</p>'))))));
+                    $('.socialwrap').append($('<div></div')
+                                .addClass('socialicons')
+                                .addClass('interior')
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-facebook'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://twitter.com/home?status=' + tweet)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-twitter'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-pinterest-p'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-linkedin'))))
+                                .append($('<div></div>')
+                                    .addClass('icon')
+                                    .append($('<a></a>')
+                                        .attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
+                                        .attr('target', '_blank')
+                                        .append($('<i></i>')
+                                            .addClass('fa fa-google-plus')))));
+                    break;
+            };
+
+            if (project.img1 !== '') {
+                $('.pgwSlider').append($('<li></li>')
+                                            .append($('<img>')
+                                                .attr('src', '/Content/inspiration/Images/Projects/' + project.img1)));
+            }
+            if (project.img2 !== '') {
+                $('.pgwSlider').append($('<li></li>')
+                                            .append($('<img>')
+                                                .attr('src', '/Content/inspiration/Images/Projects/' + project.img2)));
+            }
+            if (project.img3 !== '') {
+                $('.pgwSlider').append($('<li></li>')
+                                            .append($('<img>')
+                                                .attr('src', '/Content/inspiration/Images/Projects/' + project.img3)));
+            }
+            if (project.img4 !== '') {
+                $('.pgwSlider').append($('<li></li>')
+                                            .append($('<img>')
+                                                .attr('src', '/Content/inspiration/Images/Projects/' + project.img4)));
+            }
+            if (project.img5 !== '') {
+                $('.pgwSlider').append($('<li></li>')
+                                            .append($('<img>')
+                                                .attr('src', '/Content/inspiration/Images/Projects/' + project.img5)));
+            }
+            if (project.img6 !== '') {
+                $('.pgwSlider').append($('<li></li>')
+                                            .append($('<img>')
+                                                .attr('src', '/Content/inspiration/Images/Projects/' + project.img6)));
+            }
+
+            $('.pgwSlider').pgwSlider({
+                listPosition: 'right',
+                displayControls: true,
+                verticalCentering: true
+            });
+
+        }
+
+
     });
+
+
 
 });
 
@@ -728,4 +751,34 @@ function getUrlParameter(sParam) {
             return sParameterName[1];
         }
     }
+}
+
+function createProjects(project, countProjects, lang) {
+    window['project' + countProjects] = {};
+
+    window['project' + countProjects].id = project.attr('id');
+    window['project' + countProjects].location = project.find('location_' + lang).text();
+    window['project' + countProjects].country = project.find('country_' + lang).text();
+    window['project' + countProjects].region = project.find('region_' + lang).text();
+    window['project' + countProjects].projecttype = project.find('projecttype_' + lang).text();
+    window['project' + countProjects].buildingstyle = project.find('buildingstyle_' + lang).text();
+    window['project' + countProjects].producttitle = project.find('producttitle_' + lang).text();
+    window['project' + countProjects].producttype = project.find('producttype_' + lang).text();
+    window['project' + countProjects].series = project.find('series_' + lang).text();
+    window['project' + countProjects].productcode = project.find('series').text();
+    window['project' + countProjects].colortype = project.find('colortype_' + lang).text();
+    window['project' + countProjects].color = project.find('color_' + lang).text();
+    window['project' + countProjects].colorcode = project.find('color').text();
+    window['project' + countProjects].customer = project.find('customer_' + lang).text();
+    window['project' + countProjects].websitecustomer = project.find('websitecustomer').text();
+    window['project' + countProjects].quote = project.find('quote_' + lang).text();
+    window['project' + countProjects].coverImg = project.find('coverImg').text();
+    window['project' + countProjects].img1 = project.find('img1').text();
+    window['project' + countProjects].img2 = project.find('img2').text();
+    window['project' + countProjects].img3 = project.find('img3').text();
+    window['project' + countProjects].img4 = project.find('img4').text();
+    window['project' + countProjects].img5 = project.find('img5').text();
+    window['project' + countProjects].img6 = project.find('img6').text();
+
+    projects.push(window['project' + countProjects]);
 }
