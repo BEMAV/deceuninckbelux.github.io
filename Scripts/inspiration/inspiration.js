@@ -41,7 +41,7 @@ $(function () {
         success: function (xml) {
             var countProjects = 1;
             var pathname = window.location.pathname.split('/');
-            var lang = pathname[1];
+            var lang = pathname[2];
 
             $(xml).find('project').each(function () {
                 createArrays($(this), countProjects, lang);
